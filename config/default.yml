@@ -1,0 +1,21 @@
+server:
+  host: localhost
+  port: 3000
+  domain: example.com
+
+api:
+  host: http://car1.i.cacf.cn
+
+env:
+  enviroinment: local
+  logLevel: debug
+  name: app
+  version: 0.0.0
+
+secret: secret
+
+db:
+  client: mongodb
+  connect: localhost
+  port: 27017
+  database: 'test'
