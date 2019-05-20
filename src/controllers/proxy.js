@@ -1,21 +1,14 @@
 const Router = require('koa-router')
+const axios = require('../lib/request')
 let router = new Router()
 
 
-router.get('/', async (ctx) => {
-  ctx.body = {
-    code: 0,
-    message: '接口调用成功'
-  }
-})
-
 router.get('/index', async (ctx) => {
+  const result = await axios.get('/feed/square/filter2')
   ctx.body = {
     code: 0,
-    message: '接口调用成功2'
+    message: result.data
   }
 })
-
-
 
 module.exports = router

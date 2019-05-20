@@ -27,7 +27,7 @@ exports.addUser = async (user) => {
  * @return {[type]}                     [description]
  */
 exports.deleteUser = async ({phoneNumber}) => {
-	return await User.findOneAndRemove({phoneNumber})
+	return await User.findOneAndDelete({phoneNumber})
 }
 
 /**

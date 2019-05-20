@@ -3,9 +3,6 @@ server:
   port: 3000
   domain: example.com
 
-api:
-  host: http://car1.i.cacf.cn
-
 env:
   enviroinment: local
   logLevel: debug
@@ -19,3 +16,10 @@ db:
   connect: localhost
   port: 27017
   database: 'test'
+
+api:
+  host: http://car1.i.cacf.cn
+
+cache:
+  host: localhost
+  port: 6379

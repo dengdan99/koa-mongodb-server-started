@@ -14,6 +14,7 @@ const xRequestId = require("koa-x-request-id")
 const error = require("../middleware/error-middleware")
 const cors = require("kcors")
 const bodyParser = require("koa-bodyparser")
+const cache = require('../lib/cache')
 const routes = require("../routes")
 
 app.use(responseTime())
