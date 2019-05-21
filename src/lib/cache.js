@@ -1,4 +1,4 @@
-const redis = require('redis')
+const redis = require('redis') // https://redis.js.org/
 const config = require('config')
 const bluebird = require('bluebird')
 const logger = require('../lib/logger')
@@ -10,7 +10,7 @@ const client = redis.createClient(config.get('cache.port'), config.get('cache.ho
 client.on('error', function (err) {
   logger.fatal('Redis connection error: ' + err)
 })
-client.on('connect', function (err) {
+client.on('connect', function () {
   logger.debug('Redis connection success')
 })
 

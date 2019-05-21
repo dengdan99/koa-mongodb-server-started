@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose') // https://mongoosejs.com/docs/api.html
 const fs = require('fs')
 const path = require('path')
 const config = require('config')

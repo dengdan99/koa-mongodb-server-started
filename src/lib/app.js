@@ -2,9 +2,7 @@ const config = require("config")
 const Koa = require("koa")
 
 const app = new Koa()
-
 app.proxy = true
-
 app.keys = [config.get("secret")]
 
 const responseTime = require("koa-response-time")
@@ -14,7 +12,6 @@ const xRequestId = require("koa-x-request-id")
 const error = require("../middleware/error-middleware")
 const cors = require("kcors")
 const bodyParser = require("koa-bodyparser")
-const cache = require('../lib/cache')
 const routes = require("../routes")
 
 app.use(responseTime())
