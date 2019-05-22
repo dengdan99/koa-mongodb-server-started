@@ -18,7 +18,7 @@ module.exports = (io) => {
     })
 
     socket.on('leave', (roomName) => {
-      joinRoom(socket, 'room1')
+      leaveRoom(socket, 'room1')
     })
 
     socket.on('chat message', (msg) => {
@@ -48,7 +48,7 @@ module.exports = (io) => {
   }
 
   // 离开房间
-  function joinRoom (socket, roomName) {
+  function leaveRoom (socket, roomName) {
     chatroom.adapter.remoteLeave(socket.id, roomName, (err) => {
       if (err) throw err
       socket.to(roomName).emit('msg', 'a new user leave the room')
