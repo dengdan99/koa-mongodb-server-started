@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>client</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body { font: 13px Helvetica, Arial; }
@@ -16,27 +16,31 @@
   <body>
     <ul id="messages"></ul>
     <div class="form" action="">
-      <input id="m" autocomplete="off" /><button id="send">Send</button> <button id="join">join</button>
+      <input id="m" autocomplete="off" /><button id="send">Send</button> <button id="join">join</button> <button id="geting">get something</button>
     </div>
     <script src="https://cdn.bootcss.com/socket.io/2.2.0/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
       <script>
           $(function () {
-              var socket = io('http://localhost:3000/', {path: '/app'});
-
-              $('#send').click(function(){
-                  socket.emit('chat message', $('#m').val());
-                  $('#m').val('');
-                  return false;
-              });
-              $('#join').click(function(){
-                  socket.emit('join room', 1)
-                  return false;
-              });
-              socket.on('chat message', function(msg){
-                  console.log(msg)
-                  $('#messages').append($('<li>').text(msg));
-              });
+              var socket = io('/chatroom');
+              socket.on('connect', function () {
+                $('#send').click(function(){
+                    socket.emit('chat message', $('#m').val());
+                    $('#m').val('');
+                    return false;
+                });
+                $('#join').click(function(){
+                    socket.emit('join')
+                    return false;
+                });
+                $('#geting').click(function(){
+                    socket.emit('chat get users')
+                    return false;
+                });
+                socket.on('msg', function(msg){
+                    $('#messages').append($('<li>').text(msg));
+                });
+              })
           });
       </script>
   </body>

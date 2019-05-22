@@ -1,5 +1,5 @@
 require("./src/lib/bootstrap")
-require("./src/lib/db")
+require("./src/database")
 require('./src/lib/cache')
 const pEvent = require("p-event")
 const createServerAndListen = require("./src/lib/server")
@@ -10,13 +10,12 @@ const app = require("./src/lib/app")
 async function main() {
   const host = config.get("server.host")
   const port = config.get("server.port")
-  const enbaleWs = true
-  let server
+  // 是否使用 websocket
+  const enbaleWebSocket = true
 
   try {
-    const allServer = await createServerAndListen(app, port, host, enbaleWs)
-    server = allServer.server
-    if (enbaleWs) require("./src/lib/socket")(allServer.io)
+    const server = await createServerAndListen(app, port, host, enbaleWebSocket)
+
     logger.debug(`Server is listening on: ${host}:${port}`)
 
     await Promise.race([

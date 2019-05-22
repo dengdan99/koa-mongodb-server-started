@@ -2,21 +2,21 @@ const mongoose = require('mongoose') // https://mongoosejs.com/docs/api.html
 const fs = require('fs')
 const path = require('path')
 const config = require('config')
-const logger = require("./logger")
+const logger = require("../lib/logger")
 
 const connectString = `mongodb://${config.get('db.connect')}:${config.get('db.port')}/${config.get('db.database')}`
 mongoose.Promise = require('bluebird')
 mongoose.connect(connectString, {useNewUrlParser: true})
 
-mongoose.connection.on('connected', function () {
-  logger.debug('Mongoose connection open to ' + connectString)
-})  
+// mongoose.connection.on('connected', function () {
+//   logger.debug('Mongoose connection open to ' + connectString)
+// })  
 mongoose.connection.on('error',function (err) {    
   logger.fatal('Mongoose connection error: ' + err);  
 })  
-mongoose.connection.on('disconnected', function () {    
-  logger.debug('Mongoose connection disconnected');  
-})
+// mongoose.connection.on('disconnected', function () {    
+//   logger.debug('Mongoose connection disconnected');  
+// })
 
 /**
  * 已递归的形式，读取models文件夹下的js模型文件，并require
@@ -40,6 +40,6 @@ var walk = function(modelPath) {
       }
     })
 }
-walk(path.join(__dirname, '/../models'))
+walk(path.join(__dirname, './schemas'))
 
 module.exports = mongoose
